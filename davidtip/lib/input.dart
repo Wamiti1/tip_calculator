@@ -36,36 +36,47 @@ class _InputState extends State<Input> {
         key: formKey,
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter the bill',
-                prefixIcon: Icon(Icons.attach_money),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter the bill',
+                  prefixIcon: Icon(Icons.attach_money),
+                ),
+                keyboardType: TextInputType.number,
+                controller: billController,
               ),
-              keyboardType: TextInputType.number,
-              controller: billController,
             ),
 
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter the tip percentage',
-                prefixIcon: Icon(Icons.money),
-              ),
-              keyboardType: TextInputType.number,
-              controller: tipController,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter the tip percentage',
+                  prefixIcon: Icon(Icons.money),
+                ),
+                keyboardType: TextInputType.number,
+                controller: tipController,
+                
 
+
+              ),
             ),
 
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter the no. of people',
-                prefixIcon: Icon(Icons.person),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter the no. of people',
+                  prefixIcon: Icon(Icons.person),
+                ),
+                keyboardType: TextInputType.number,
+                controller: personsController,
+              
               ),
-              keyboardType: TextInputType.number,
-              controller: personsController,
-
             ),
 
             ElevatedButton(onPressed: (){
@@ -73,7 +84,7 @@ class _InputState extends State<Input> {
               double tip = double.parse(tipController.text);
               int perperson = int.parse(personsController.text);
 
-           var totalbill =  total(bill, tip);
+            var totalbill =  total(bill, tip);
             var shares = share(bill, perperson);
 
 
