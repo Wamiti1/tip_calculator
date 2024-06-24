@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:davidtip/results.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 
 class Input extends StatefulWidget {
@@ -17,11 +18,11 @@ class _InputState extends State<Input> {
   final formKey = GlobalKey<FormState>();
 
 
-  dynamic total (int bill, double tip){
+  dynamic total (double bill, double tip){
         return (bill + (bill * tip/100));
     }
 
-  dynamic share(int bill, int persons){
+  dynamic share(double bill, int persons){
     return(bill/persons);
   }
 
@@ -46,6 +47,16 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: billController,
+                validator: (value){
+                if (value!.isNotEmpty){
+                FormBuilderValidators.compose([
+                  FormBuilderValidators.integer(errorText: 'Enter a whole number'),
+                ]);}
+                else {
+                  return 'Enter a value';
+                }
+                }
+                ,
               ),
             ),
 
@@ -59,7 +70,19 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: tipController,
+                validator: (value){
+
+                  if(value!.isNotEmpty){
+                    FormBuilderValidators.compose([
+                  FormBuilderValidators.numeric(errorText: 'Enter a number, whether a fraction or whole number'),
+                ]); }
+                else{
+                  return 'Enter a value';
+                }
+                }
                 
+                
+                   
 
 
               ),
@@ -75,12 +98,26 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: personsController,
-              
+                validator: (value){
+                      if (value!.isNotEmpty){
+                        FormBuilderValidators.compose([
+                  FormBuilderValidators.numeric(errorText: 'Enter a whole number'),
+                ]); 
+                      }
+                      else{
+                        return 'Enter a value';
+                      }
+                }
+                
+                
+                       
               ),
             ),
 
             ElevatedButton(onPressed: (){
-              int bill = int.parse(billController.text);
+              var isValid = formKey.currentState!.validate();
+              if (isValid){
+              double bill = double.parse(billController.text);
               double tip = double.parse(tipController.text);
               int perperson = int.parse(personsController.text);
 
@@ -92,7 +129,14 @@ class _InputState extends State<Input> {
 
               Navigator.push(context, MaterialPageRoute(builder: (_)=> Results(bill: totalbill, perperson: shares)));
 
-            }, child: const Text('Calculate'))
+            }
+            else{
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill out all the fields correctly')));
+            }
+            
+            
+            },
+             child: const Text('Calculate'))
 
           ],
         ),)
