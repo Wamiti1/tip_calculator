@@ -29,6 +29,9 @@ class _InputState extends State<Input> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Calculator'),),
+      ),
       body: Form(
         key: formKey,
         child: Column(
