@@ -47,16 +47,19 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: billController,
-                validator: (value){
-                if (value!.isNotEmpty){
-                FormBuilderValidators.compose([
-                  FormBuilderValidators.integer(errorText: 'Enter a whole number'),
-                ]);}
-                else {
-                  return 'Enter a value';
-                }
-                }
-                ,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a value';
+                  }
+                  
+                  
+                  try {
+                    int.parse(value);
+                    return null; 
+                  } catch (e) {
+                    return 'Please enter a valid integer';
+                  }
+                },
               ),
             ),
 
@@ -70,16 +73,19 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: tipController,
-                validator:  (value){
-
-                  if(value!.isNotEmpty){
-                    FormBuilderValidators.compose([
-                  FormBuilderValidators.numeric(errorText: 'Enter a number, whether a fraction or whole number'),
-                ]); }
-                else{
-                  return 'Enter a value';
-                }
-                }
+                validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a value';
+                      }
+                      
+                      // Try to parse the input as an integer
+                      try {
+                        double.parse(value);
+                        return null; // Valid input
+                      } catch (e) {
+                        return 'Please enter a valid number';
+                      }
+                    },
                 
                 
                    
@@ -98,16 +104,19 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: personsController,
-                validator: (value){
-                      if (value!.isNotEmpty){
-                        FormBuilderValidators.compose([
-                  FormBuilderValidators.integer(errorText: 'Enter a whole number'),
-                ]); 
-                      }
-                      else{
-                        return 'Enter a value';
-                      }
-                }
+                validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a value';
+                    }
+                    
+                    // Try to parse the input as an integer
+                    try {
+                      int.parse(value);
+                      return null; // Valid input
+                    } catch (e) {
+                      return 'Please enter a valid integer';
+                    }
+                  },
                 
                 
                        
