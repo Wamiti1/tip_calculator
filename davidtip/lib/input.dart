@@ -18,11 +18,11 @@ class _InputState extends State<Input> {
   final formKey = GlobalKey<FormState>();
 
 
-  dynamic total (double bill, double tip){
+  dynamic total (int bill, double tip){
         return (bill + (bill * tip/100));
     }
 
-  dynamic share(double bill, int persons){
+  dynamic share(int bill, int persons){
     return(bill/persons);
   }
 
@@ -70,7 +70,7 @@ class _InputState extends State<Input> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: tipController,
-                validator: (value){
+                validator:  (value){
 
                   if(value!.isNotEmpty){
                     FormBuilderValidators.compose([
@@ -101,7 +101,7 @@ class _InputState extends State<Input> {
                 validator: (value){
                       if (value!.isNotEmpty){
                         FormBuilderValidators.compose([
-                  FormBuilderValidators.numeric(errorText: 'Enter a whole number'),
+                  FormBuilderValidators.integer(errorText: 'Enter a whole number'),
                 ]); 
                       }
                       else{
@@ -117,7 +117,7 @@ class _InputState extends State<Input> {
             ElevatedButton(onPressed: (){
               var isValid = formKey.currentState!.validate();
               if (isValid){
-              double bill = double.parse(billController.text);
+              int bill = int.parse(billController.text);
               double tip = double.parse(tipController.text);
               int perperson = int.parse(personsController.text);
 
