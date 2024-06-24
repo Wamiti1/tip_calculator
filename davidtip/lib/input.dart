@@ -70,13 +70,13 @@ class _InputState extends State<Input> {
               double tip = double.parse(tipController.text);
               int perperson = int.parse(personsController.text);
 
-            total(bill, tip);
+           var totalbill =  total(bill, tip);
             var shares = share(bill, perperson);
 
 
               
 
-              Navigator.push(context, MaterialPageRoute(builder: (_)=> Results(bill: bill, perperson: shares)));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=> Results(bill: totalbill, perperson: shares)));
 
             }, child: const Text('Calculate'))
 

@@ -8,11 +8,11 @@ class Results extends StatelessWidget {
   
   });
 
-  final int bill;
+  final dynamic bill;
   final dynamic perperson;
 
   calculations(){
-    return (bill/perperson);
+    return bill/perperson;
   }
 
   @override
@@ -26,7 +26,7 @@ class Results extends StatelessWidget {
 
       body: Column(children: [
         Text('Bill: $bill'),
-        Text('Per Person: $perperson()'),
+        Text('Per Person: $perperson'),
         
       ],),
     ) ;
