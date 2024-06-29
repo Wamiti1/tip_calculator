@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:davidtip/results.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+//import 'package:form_builder_validators/form_builder_validators.dart';
 
 
 class Input extends StatefulWidget {
@@ -54,7 +54,7 @@ class _InputState extends State<Input> {
                   
                   
                   try {
-                    int.parse(value);
+                    int.tryParse(value);
                     return null; 
                   } catch (e) {
                     return 'Please enter a valid integer';
@@ -80,7 +80,7 @@ class _InputState extends State<Input> {
                       
                       // Try to parse the input as an integer
                       try {
-                        double.parse(value);
+                        double.tryParse(value);
                         return null; // Valid input
                       } catch (e) {
                         return 'Please enter a valid number';
@@ -111,7 +111,7 @@ class _InputState extends State<Input> {
                     
                     // Try to parse the input as an integer
                     try {
-                      int.parse(value);
+                      int.tryParse(value);
                       return null; // Valid input
                     } catch (e) {
                       return 'Please enter a valid integer';
